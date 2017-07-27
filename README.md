@@ -38,3 +38,19 @@ A Maven plugin to perform a sparse checkout (fetch only a subtree) in a given re
 </project>
 
 ```
+
+#Output
+
+```
+[INFO] --- git-sparse-checkout-plugin:1.0.0-SNAPSHOT:git-sparse-checkout (get-docs) @ launchpad-addon ---
+Initialized empty Git repository in /home/ggastald/workspace/launchpad/launchpad-addon/target/classes/.git/
+remote: Counting objects: 2614, done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 2614 (delta 0), reused 1 (delta 0), pack-reused 2609
+Receiving objects: 100% (2614/2614), 2.90 MiB | 1.00 MiB/s, done.
+Resolving deltas: 100% (1570/1570), done.
+From github.com:openshiftio/appdev-documentation
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> origin/master
+[INFO] Files available in: /home/ggastald/workspace/launchpad/launchpad-addon/target/classes
+```
