@@ -43,7 +43,7 @@ public class GitSparseCheckoutMojo extends AbstractMojo {
             Files.write(sparseCheckoutFile, Arrays.asList(paths));
             executeCommand(outputDirectory, "git", "pull", "origin", "master");
             executeCommand(outputDirectory, "rm", "-rf", ".git");
-            getLog().info("temp: " + outputDirectory);
+            getLog().info("Files available in: " + outputDirectory);
         } catch (IOException e) {
             e.printStackTrace();
         }
