@@ -1,6 +1,6 @@
 # git-sparse-checkout-plugin
 
-A Maven plugin to perform a sparse checkout (fetch only a subtree) in a given repository
+A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given Git repository
 
 
 # POM Configuration 
