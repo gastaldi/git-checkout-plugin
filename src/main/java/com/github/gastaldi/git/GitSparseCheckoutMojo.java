@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -27,25 +28,25 @@ public class GitSparseCheckoutMojo extends AbstractMojo {
     private String repository;
 
     @Parameter(property = "paths", required = true)
-    private String[] paths;
+    private List<String> paths;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
             outputDirectory.mkdirs();
             if (Files.exists(outputDirectory.toPath().resolve(".git"))) {
-                throw new MojoExecutionException("Cannot execute in a directory that already contains a .git directory");
+                throw new MojoExecutionException("Cannot execute mojo in a directory that already contains a .git directory");
             }
             executeCommand(outputDirectory, "git", "init");
             executeCommand(outputDirectory, "git", "remote", "add", "origin", repository);
             executeCommand(outputDirectory, "git", "config", "core.sparseCheckout", "true");
             Path sparseCheckoutFile = outputDirectory.toPath().resolve(".git/info/sparse-checkout");
-            Files.write(sparseCheckoutFile, Arrays.asList(paths));
+            Files.write(sparseCheckoutFile, paths);
             executeCommand(outputDirectory, "git", "pull", "origin", "master");
             executeCommand(outputDirectory, "rm", "-rf", ".git");
-            getLog().info("Files available in: " + outputDirectory);
+            getLog().info("Files were checked out in: " + outputDirectory);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new MojoFailureException("Caught IOException in mojo",e);
         }
     }
 
