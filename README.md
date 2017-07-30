@@ -1,4 +1,4 @@
-# git-sparse-checkout-plugin
+# git-checkout-plugin
 
 A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given Git repository
 
