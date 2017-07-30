@@ -18,8 +18,8 @@ import org.apache.maven.plugins.annotations.Parameter;
  *
  * @author <a href="mailto:ggastald@redhat.com">George Gastaldi</a>
  */
-@Mojo(name = "git-sparse-checkout")
-public class GitSparseCheckoutMojo extends AbstractMojo {
+@Mojo(name = "git-checkout")
+public class GitCheckoutMojo extends AbstractMojo {
 
     @Parameter(property = "outputDirectory", defaultValue = "${project.build.outputDirectory}")
     private File outputDirectory;
