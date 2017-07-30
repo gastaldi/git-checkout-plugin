@@ -12,14 +12,14 @@ A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given 
     <plugins>
        <plugin>
           <groupId>com.github.gastaldi</groupId>
-          <artifactId>git-sparse-checkout-plugin</artifactId>
+          <artifactId>git-checkout-plugin</artifactId>
           <version>1.0.0-SNAPSHOT</version>
           <executions>
              <execution>
                 <id>get-docs</id>
                 <phase>process-resources</phase>
                 <goals>
-                   <goal>git-sparse-checkout</goal>
+                   <goal>git-checkout</goal>
                 </goals>
              </execution>
           </executions>
@@ -42,7 +42,7 @@ A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given 
 #Output
 
 ```
-[INFO] --- git-sparse-checkout-plugin:1.0.0-SNAPSHOT:git-sparse-checkout (get-docs) @ launchpad-addon ---
+[INFO] --- git-checkout-plugin:1.0.0-SNAPSHOT:git-checkout (get-docs) @ launchpad-addon ---
 Initialized empty Git repository in /home/ggastald/workspace/launchpad/launchpad-addon/target/classes/.git/
 remote: Counting objects: 2614, done.
 remote: Compressing objects: 100% (5/5), done.
