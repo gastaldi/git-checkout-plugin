@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.maven.plugin.AbstractMojo;
@@ -27,6 +26,9 @@ public class GitCheckoutMojo extends AbstractMojo {
     @Parameter(property = "repository", required = true)
     private String repository;
 
+    @Parameter(property = "branch", defaultValue = "master")
+    private String branch;
+
     @Parameter(property = "paths", required = true)
     private List<String> paths;
 
@@ -42,11 +44,11 @@ public class GitCheckoutMojo extends AbstractMojo {
             executeCommand(outputDirectory, "git", "config", "core.sparseCheckout", "true");
             Path sparseCheckoutFile = outputDirectory.toPath().resolve(".git/info/sparse-checkout");
             Files.write(sparseCheckoutFile, paths);
-            executeCommand(outputDirectory, "git", "pull", "origin", "master");
+            executeCommand(outputDirectory, "git", "pull", "origin", branch);
             executeCommand(outputDirectory, "rm", "-rf", ".git");
             getLog().info("Files were checked out in: " + outputDirectory);
         } catch (IOException e) {
-            throw new MojoFailureException("Caught IOException in mojo",e);
+            throw new MojoFailureException("Caught IOException in mojo", e);
         }
     }
 
