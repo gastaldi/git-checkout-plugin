@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.gastaldi</groupId>
   <artifactId>git-sparse-checkout-plugin</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0.Alpha1</version>
   <packaging>maven-plugin</packaging>
   <name>git-checkout-plugin</name>
   <description>A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given Git repository</description>
@@ -92,7 +92,7 @@
     <url>https://github.com/gastaldi/git-checkout-plugin</url>
     <connection>scm:git:git@github.com:gastaldi/git-checkout-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:gastaldi/git-checkout-plugin.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>1.0.0.Alpha1</tag>
   </scm>
 
   <distributionManagement>
