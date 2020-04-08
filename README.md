@@ -13,7 +13,7 @@ A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given 
        <plugin>
           <groupId>com.github.gastaldi</groupId>
           <artifactId>git-checkout-plugin</artifactId>
-          <version>1.0.0-SNAPSHOT</version>
+          <version>1.0.0.Alpha1</version>
           <executions>
              <execution>
                 <id>get-docs</id>
