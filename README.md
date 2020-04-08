@@ -3,7 +3,7 @@
 A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given Git repository
 
 
-# POM Configuration 
+## POM Configuration 
 
 ```xml
 <project>
@@ -39,7 +39,7 @@ A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given 
 
 ```
 
-#Output
+### Output
 
 ```
 [INFO] --- git-checkout-plugin:1.0.0-SNAPSHOT:git-checkout (get-docs) @ launchpad-addon ---
