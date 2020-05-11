@@ -2,8 +2,12 @@ package com.github.gastaldi.git;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 
 import org.apache.maven.plugin.AbstractMojo;
@@ -45,7 +49,7 @@ public class GitCheckoutMojo extends AbstractMojo {
             Path sparseCheckoutFile = outputDirectory.toPath().resolve(".git/info/sparse-checkout");
             Files.write(sparseCheckoutFile, paths);
             executeCommand(outputDirectory, "git", "pull", "origin", branch);
-            executeCommand(outputDirectory, "rm", "-rf", ".git");
+            deleteDirectory(outputDirectory.toPath().resolve(".git"));
             getLog().info("Files were checked out in: " + outputDirectory);
         } catch (IOException e) {
             throw new MojoFailureException("Caught IOException in mojo", e);
@@ -62,6 +66,34 @@ public class GitCheckoutMojo extends AbstractMojo {
             return process.waitFor();
         } catch (InterruptedException e) {
             throw new IOException(e);
+        }
+    }
+
+    /**
+     * Deletes a directory recursively
+     *
+     * @param directory
+     * @throws IOException
+     */
+    private static void deleteDirectory(Path directory) throws IOException {
+        if (Files.exists(directory)) {
+            Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                    try {
+                        Files.delete(file);
+                    } catch (NoSuchFileException ignore) {
+                        // Ignore if file is already removed by other process
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                    Files.delete(dir);
+                    return FileVisitResult.CONTINUE;
+                }
+            });
         }
     }
 }
