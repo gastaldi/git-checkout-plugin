@@ -18,7 +18,7 @@ import org.codehaus.plexus.util.FileUtils;
  *
  * @author <a href="mailto:ggastald@redhat.com">George Gastaldi</a>
  */
-@Mojo(name = "git-checkout")
+@Mojo(name = "git-checkout", requiresProject = false)
 public class GitCheckoutMojo extends AbstractMojo {
 
     @Parameter(property = "outputDirectory", defaultValue = "${project.build.outputDirectory}")
