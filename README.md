@@ -2,7 +2,6 @@
 
 A Maven plugin to perform a sparse checkout (fetch only a subtree) from a given Git repository
 
-
 ## POM Configuration 
 
 ```xml
